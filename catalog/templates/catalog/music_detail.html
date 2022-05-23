@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Title: {{music.title}}</h1>
+    <p><strong>Difficulty: </strong></p>
+    <p>Easy: {{music.easy.Difficulty}}, Normal: {{music.normal.Difficulty}}, Hard: {{music.hard.Difficulty}}, Expert: {{music.expert.Difficulty}}, Master: {{music.master.Difficulty}}</p>
+    <a href="http://sekai.best/music/{{music.num}}"><strong>Sekai Viewer</strong></a>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>My Favorite Musics.</h1>
+    {% if object_list %}
+        <ul>
+            {% for Account in object_list %}
+            {% if Account.my_musics %}
+            {% for music in Account.my_musics %}
+                <li>
+                    <a href="{% url 'music_detail' music.num %}">{{ music.title }}</a>
+                    <p><strong>Difficulty</strong> : Easy: {{music.easy.Difficulty}}, Normal: {{music.normal.Difficulty}}, Hard: {{music.hard.Difficulty}}, Expert: {{music.expert.Difficulty}}, Master: {{music.master.Difficulty}}</p>
+                    <hr>        
+                </li>
+            {% endfor %}
+            {% else %}
+                <p> your musics list is empty. </p>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{{ Account.username }}</p>
+    {% endif %}
+{% endblock %}

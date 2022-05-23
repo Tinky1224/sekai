@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_staff %}
+        <h>Create New Music.</h>
+
+        <form action="" method="post" novalidate="novalidate">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Create">
+        </form>
+    {% else %}
+        <p>sorry, You are not allowed to see this.</p>
+    {% endif %}
+{% endblock %}

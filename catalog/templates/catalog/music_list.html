@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Music List</h1>
+    <form action="" method="get">
+        {{ filter.form }}
+        <input type="submit" />
+    </form>
+    {% if filter.qs %}
+    <ul>
+        {% for music in filter.qs %}
+        <li>
+            {% if user.is_authenticated %}
+            {% if music in user.my_musics %}
+            <form action="{% url 'unlike' music.num %}?from={{request.get_full_path}}" method="POST">
+                {% csrf_token %}
+                <button type="submit" name="unlike" value="unlike">Unlike</button>
+            </form>
+            {% else %}
+            <form action="{% url 'like' music.num %}?from={{request.get_full_path}}" method="POST">
+                {% csrf_token %}
+                <button type="submit" name="like" value="like">Like</button>
+            </form>
+            {% endif %}
+            {% endif %}
+            <a href="{{ music.get_absolute_url }}">{{ music.title }}</a>
+            <p><strong>Difficulty</strong> : Easy: {{music.easy.Difficulty}}, Normal: {{music.normal.Difficulty}}, Hard: {{music.hard.Difficulty}}, Expert: {{music.expert.Difficulty}}, Master: {{music.master.Difficulty}}</p>
+            <hr>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p> There are no music match condition. </p>
+    {% endif %}
+{% endblock %}

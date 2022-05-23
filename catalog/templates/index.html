@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+    <title> Project Sekai Music Index </title>
+{% endblock %}
+{% block content %}
+    <h1> Music index</h1>
+    <p> Welcome to project sekai music index. developed by <em>Tinky (plagiarized from Mozilla Developer Network)</em></p>
+
+    <p>number of music: </p>
+    <ol>
+        <li><strong>music_count:</strong>{{music_count}}</li>
+    </ol>
+
+    <p>visited_count: {{num_visits}}</p>
+{% endblock %}
