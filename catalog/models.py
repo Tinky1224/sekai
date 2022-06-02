@@ -47,7 +47,7 @@ class Music(models.Model):
     num = models.IntegerField(default = 999, help_text="Unique ID for its url")
 
     def __str__(self):
-        return self.title
+        return f"{self.num}: {self.title}"
     
     def get_absolute_url(self):
         return reverse('music_detail', kwargs={"num":self.num})
@@ -79,18 +79,20 @@ class Person(models.Model):
 '''
 
 class AccountManage(BaseUserManager):
-    def create_user(self, email, password=None):
+    def create_user(self, email, username='normaluser', password=None):
         if not email:
             raise ValueError('Users must have an email address')
         user = self.model(
+            username=username,
             email=self.normalize_email(email),
           )
         user.set_password(password)
         user.save(using=self._db)
         return user
-    def create_superuser(self, email, password=None):
+    def create_superuser(self, email, username='superuser', password=None):
         user = self.create_user(
-             email,
+             email=email,
+             username=username,
              password=password,
           )
         user.is_admin = True
@@ -99,6 +101,7 @@ class AccountManage(BaseUserManager):
 
 #繼承django預設user model.
 class Account(AbstractBaseUser):
+    username = models.CharField(max_length=20, default = 'resident_of_sekai')
     email = models.EmailField(unique=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -110,7 +113,7 @@ class Account(AbstractBaseUser):
     USERNAME_FIELD = 'email'
 
     def __str__(self):
-        return self.email
+        return self.username
     def is_staff(self):
         return self.is_staff
     def has_perm(self, perm, obj=None):

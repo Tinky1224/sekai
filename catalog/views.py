@@ -2,21 +2,21 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from django.http import Http404
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.decorators import permission_required, login_required
 from django_filters.views import FilterView
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.urls import reverse
 
 # Create your views here.
 from .forms import MusicForm, RegisterForm
-from .models import Music, Easy, Normal, Hard, Expert, Master, Account#, Person
+from .models import Music, Easy, Normal, Hard, Expert, Master, Account
 from .filters import MusicFilter
 
 class MusicListView(FilterView):
     model = Music
     context_name = "Music_list"
-#    queryset = Music.objects.filter(title__icontains='Tell your world')[:]
     template_name = "catalog/music_list.html"
-    paginate_by = 10
+#    paginate_by = 10
     filterset_class = MusicFilter
 
 '''class MusicListView(generic.ListView):
@@ -27,12 +27,6 @@ class MusicListView(FilterView):
     paginate_by = 20
     filterset_class = MusicFilter
 '''
-class MusicListView_filter(generic.ListView):
-    model = Music
-    context_name = "Music_list"
-#    queryset = Music.objects.filter(title__icontains='Tell your world')[:]
-    template_name = "catalog/music_list.html"
-    paginate_by = 20
 
 class MusicDetailView(generic.DetailView):
     model = Music
@@ -68,31 +62,40 @@ class user_love_song_view(LoginRequiredMixin,generic.ListView):
 #    paginate_by = 10
 
     def get_queryset(self):
-        return Account.objects.filter(email=self.request.user.email)
+        return Account.objects.get(email=self.request.user.email).favorite_musics.all()
 
 @permission_required('staff_member_required')
 def music_create(request):
     if request.method == 'POST':
         form = MusicForm(request.POST)
-        if Music.objects.get(num = request.POST.get('num')):
+        if Music.objects.filter(num = request.POST.get('num')):
+            messages.info(request, "Failed, the num of music is existed!")
             return redirect('music_detail', request.POST.get('num'))
         if form.is_valid():
             music = form.save()
+            messages.info(request, "Add music successful.")
             return redirect('music_detail', music.num)
     else:
         form = MusicForm()
     return render(request, 'catalog/music_create.html', {'form': form})
 
+@login_required
 def like_music(request, num):
-    music = Music.objects.get(num=num)
+    if not Music.objects.filter(num=num):
+        return redirect(request.GET.get('from', 'music'))
     user = request.user
-    user.favorite_musics.add(music)
+    if user.favorite_musics.filter(num=num):
+        return redirect(request.GET.get('from', 'music'))
+    user.favorite_musics.add(Music.objects.get(num=num))
     return redirect(request.GET.get('from', 'music'))
-
+@login_required
 def unlike_music(request, num):
-    music = Music.objects.get(num=num)
+    if not Music.objects.filter(num=num):
+        return redirect(request.GET.get('from', 'music'))
     user = request.user
-    user.favorite_musics.remove(music)
+    if not user.favorite_musics.filter(num=num):
+        return redirect(request.GET.get('from', 'music'))
+    user.favorite_musics.remove(Music.objects.get(num=num))
     return redirect(request.GET.get('from', 'music'))
 
 def register_view(request):
@@ -100,6 +103,7 @@ def register_view(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect(request.GET.get('next', 'index'))
     else:
         form = RegisterForm()
     context = {
