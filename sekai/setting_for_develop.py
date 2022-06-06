@@ -11,27 +11,19 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'cf-jm$m29%$=nxus^3s+qx53hl0)38cl=f5mf)+i93r6%^()!j')
-
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-SECURE_HSTS_SECONDS = 60
+SECRET_KEY = 'django-insecure-kaw@^_on_7k=a_^(x$y8l!9tvzq4x-%)w^3ad-&(#vle=y^m*@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-SECURE_SSL_REDIRECT = True
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
