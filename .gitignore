@@ -5,5 +5,6 @@
 /expert.txt
 /master.txt
 /爬取歌曲資料.ipynb
+/.ipynb_checkpoints
 *.bak
 *.sqlite3
