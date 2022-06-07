@@ -34,7 +34,7 @@ SECURE_SSL_REDIRECT = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
-ALLOWED_HOSTS = ['127.0.0.1', ]
+ALLOWED_HOSTS = ['127.0.0.1', 'my-project-sekai-music-filter.herokuapp.com']
 
 
 # Application definition
