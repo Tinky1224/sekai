@@ -31,10 +31,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'cf-jm$m29%$=nxus^3s+qx53hl0)38cl=f5mf
 DEBUG = False
 
 #SECURE_SSL_REDIRECT = True
-#CSRF_COOKIE_SECURE = True
-#SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
-ALLOWED_HOSTS = ['myprojectsekaimusicfilter.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'myprojectsekaimusicfilter.herokuapp.com']
 
 
 # Application definition
@@ -150,3 +150,22 @@ DATABASES['default'].update(db_from_env)
 # Reduce the size of the static files when they are served (this is more efficient)
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
