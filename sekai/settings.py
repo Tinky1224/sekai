@@ -23,18 +23,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', 'cf-jm$m29%$=nxus^3s+qx53hl0)38cl=f5mf)+i93r6%^()!j')
 
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-SECURE_HSTS_SECONDS = 60
+#SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+#SECURE_HSTS_PRELOAD = True
+#SECURE_HSTS_SECONDS = 60
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 #SECURE_SSL_REDIRECT = True
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
+#SESSION_COOKIE_SECURE = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'my-project-sekai-music-filter.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'myprojectsekaimusicfilter.herokuapp.com']
 
 
 # Application definition
