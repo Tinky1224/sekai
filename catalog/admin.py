@@ -40,7 +40,6 @@ class MusicAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('title','num')}),
         ('Difficulty', {'fields': ('easy', 'normal', 'hard', 'expert', 'master')}),
-        ('Availbality', {'fields': ('lover',)})
         )
 #    inlines = [MusicInstanceInline]
 admin.site.register(Music, MusicAdmin)
