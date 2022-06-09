@@ -8,11 +8,11 @@
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <style>
             #sidebar {
-                background: linear-gradient(to bottom, MediumBlue, white);
+                background: linear-gradient(to bottom, rgb(56, 56, 218), white);
             }
 
             #maincontent {
-                background: linear-gradient(to bottom, blueviolet, white);
+                background: linear-gradient(to bottom, rgb(159, 57, 255), white);
             }
 
             div {
@@ -28,8 +28,10 @@
                     {% block sidebar %}
                     <ul class="sidebar-nav">
                         {% if user.is_authenticated %}
-                            <li>User: {{ user.username }}</li>
-                            <li>Login time: {{ user.last_login }}</li>
+                            <li><strong>User: </strong></li>
+                            <li><strong>  {{ user.username }}</strong></li>
+                            <li><strong>Login time: </strong></li>
+                            <li><strong>  {{ user.last_login }}</strong></li>
                             <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
                             <li><a href="{% url 'my_musics' %}">my_favorite_musics</a></li>
                         {% else %}
