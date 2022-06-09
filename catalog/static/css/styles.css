@@ -1,5 +1,6 @@
 .sidebar-nav {
     margin-top: 20px;
+    height: 100%;
     padding: 0;
     list-style: none;
 }
