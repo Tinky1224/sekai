@@ -23,7 +23,7 @@
             </form>
             {% endif %}
             {% endif %}
-            <a href="{{ music.get_absolute_url }}" color="orange">{{ music.title }}</a>
+            <a href="{{ music.get_absolute_url }}">{{ music.title }}</a>
             <p><strong>Difficulty</strong> : Easy: {{music.easy.Difficulty}}, Normal: {{music.normal.Difficulty}}, Hard: {{music.hard.Difficulty}}, Expert: {{music.expert.Difficulty}}, Master: {{music.master.Difficulty}}</p>
             <hr>
         </li>
