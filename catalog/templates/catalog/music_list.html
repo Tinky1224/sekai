@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-1">
                     {% with music.num|stringformat:"s" as num %}
-                        <p>url: {{ 'images/music_'|add:num|add:'.jpg' }}</p>
+                        <img src="{% static 'images/music_'|add:num|add:'.jpg' %}" alt="image not found">
                     {% endwith %}
                 </div>
                 <div class="col">
