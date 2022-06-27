@@ -3,13 +3,22 @@
 {% block content %}
     <h1>My Favorite Musics.</h1>
     {% if object_list %}
-    {{object_list}}
         <ul>
-            {% for music in objcet_list %}
+            {% for music in object_list %}
                 <li>
-                    <a href="{% url 'music_detail' music.num %}">{{ music.title }}</a>
-                    <p><strong>Difficulty</strong> : Easy: {{music.easy.Difficulty}}, Normal: {{music.normal.Difficulty}}, Hard: {{music.hard.Difficulty}}, Expert: {{music.expert.Difficulty}}, Master: {{music.master.Difficulty}}</p>
-                    <hr>        
+                    {% load static %}
+                    <div class="row">
+                        <div class="col-1">
+                            {% with music.num|stringformat:"s" as num %}
+                                <img src="{% static 'images/music_'|add:num|add:'.jpg' %}" alt="image not found">
+                            {% endwith %}
+                        </div>
+                        <div class="col">
+                            <a href="{{ music.get_absolute_url }}" style="color:orange;">{{ music.title }}</a>
+                            <p><strong>Difficulty</strong> : Easy: {{music.easy.Difficulty}}, Normal: {{music.normal.Difficulty}}, Hard: {{music.hard.Difficulty}}, Expert: {{music.expert.Difficulty}}, Master: {{music.master.Difficulty}}</p>    
+                        </div>
+                    </div>
+                            <hr>        
                 </li>
             {% endfor %}
         </ul>
