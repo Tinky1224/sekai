@@ -23,6 +23,7 @@
             </form>
             {% endif %}
             {% endif %}
+            <img src="{% static 'images/music_ %}{{ music.num}}.jpg' %}">
             <a href="{{ music.get_absolute_url }}" style="color:orange;">{{ music.title }}</a>
             <p><strong>Difficulty</strong> : Easy: {{music.easy.Difficulty}}, Normal: {{music.normal.Difficulty}}, Hard: {{music.hard.Difficulty}}, Expert: {{music.expert.Difficulty}}, Master: {{music.master.Difficulty}}</p>
             <hr>
