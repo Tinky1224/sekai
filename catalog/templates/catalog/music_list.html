@@ -26,9 +26,8 @@
             {% load static %}
             <div class="row">
                 <div class="col-1">
-                    {% with 'images/music_'|add:music.num|stringformat:"s" as img_url %}
-                        <p>url: {{ img_url }}</p>
-                        <p>{{ music.num }}</p>
+                    {% with music.num|stringformat:"s" as num %}
+                        <p>url: {{ 'images/music_'|add:num|add:'.jpg' }}</p>
                     {% endwith %}
                 </div>
                 <div class="col">
