@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'cf-jm$m29%$=nxus^3s+qx53hl0)38cl=f5mf
 #SECURE_HSTS_SECONDS = 60
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 #SECURE_SSL_REDIRECT = True
 CSRF_COOKIE_SECURE = True

@@ -23,9 +23,16 @@
             </form>
             {% endif %}
             {% endif %}
-            <img src="{% static 'images/music_ %}{{ music.num}}.jpg' %}">
-            <a href="{{ music.get_absolute_url }}" style="color:orange;">{{ music.title }}</a>
-            <p><strong>Difficulty</strong> : Easy: {{music.easy.Difficulty}}, Normal: {{music.normal.Difficulty}}, Hard: {{music.hard.Difficulty}}, Expert: {{music.expert.Difficulty}}, Master: {{music.master.Difficulty}}</p>
+            {% load static %}
+            <div class="row">
+                <div class="col-1">
+                    <img src="{% static 'images/music_' %}{{ music.num }}.jpg" alt="not found image.">
+                </div>
+                <div class="col">
+                    <a href="{{ music.get_absolute_url }}" style="color:orange;">{{ music.title }}</a>
+                    <p><strong>Difficulty</strong> : Easy: {{music.easy.Difficulty}}, Normal: {{music.normal.Difficulty}}, Hard: {{music.hard.Difficulty}}, Expert: {{music.expert.Difficulty}}, Master: {{music.master.Difficulty}}</p>    
+                </div>
+            </div>
             <hr>
         </li>
         {% endfor %}

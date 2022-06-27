@@ -7,10 +7,15 @@
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <style>
+            img {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+            }
+
             #sidebar {
-                position: fixed; 
                 height: 100%;
-                background: linear-gradient(to bottom, rgb(56, 56, 218), white);
+                background: linear-gradient(to bottom, rgb(255, 243, 109), white);
             }
 
             #maincontent {
