@@ -26,8 +26,8 @@
             {% load static %}
             <div class="row">
                 <div class="col-1">
-                    {% with 'images/music_'|add:music.num|add:'.jpg' as img_url %}
-                        <p>{{ img_url }}</p>
+                    {% with img_url = 'images/music_'|add:music.num|add:'.jpg' %}
+                        <p>url: {{ img_url|safe }}</p>
                     {% endwith %}
                 </div>
                 <div class="col">
