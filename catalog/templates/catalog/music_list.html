@@ -26,7 +26,7 @@
             {% load static %}
             <div class="row">
                 <div class="col-1">
-                    <p>image</p>
+                    <img src="{% static 'images/music_'|add:music.num|add:'.jpg' %}" alt="not found image.">
                 </div>
                 <div class="col">
                     <a href="{{ music.get_absolute_url }}" style="color:orange;">{{ music.title }}</a>
